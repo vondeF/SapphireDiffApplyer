@@ -1,2 +1,31 @@
-# SapphireDiffApplyer
-The utility applies difference models to the information model on a daily basis
+# <img width="30" height="30" alt="icons8-ежедневно-96" src="https://github.com/user-attachments/assets/b01bfe7a-9c8a-47ef-bf07-aa29e8ef32c4" /> SapphireDiffApplyer
+Утилита для ежедневной загрузки наборов изменений в информационную модель, построенную на базе CIM в соответствии с серией ГОСТ Р 58651.
+
+## Установка
+Утилита расположена на сервере САПФИР. 
+Логи работы приложения расположены в папке с наборами изменений. Файлы логов имеют наименование **SapphireDiffApplier_logYYMMDD.log**, где YYMMDD – дата записи логов (YY – год, MM – месяц, DD – день). Сохраняются 5 последних файлов логов, более старые удаляются.
+
+## Запуск и работа
+Управление загрузкой файлов за конкретную дату производится через файл **status.json**, который имеет следующий формат:
+```
+{
+"lssd": "2026-03-01",
+"lsad_Gost": "2026-03-01",
+"lsad_NonGost": "2026-03-01"
+}
+```
+**lssd** (last successful slon date) - дата последнего успешного скачивания наборов изменений утилитой SLON-IM
+
+**lsad_Gost** (last successful applyer date) - дата последнего успешного импорта наборов изменений от Sapphire Diff Applyer в модель DB_Portal (по ГОСТ)
+
+**lsad_NonGost** - дата последнего успешного импорта наборов изменений от Sapphire Diff Applyer в модель DB_Portal_nonGost (не по ГОСТ)
+
+**При запуске** утилиты выполняется поиск информационных моделей для загрузки. Все загруженные файлы обрабатываются и импортируются в указанную модель
+> ✅ При успешном запуске обоих утилит переменные в файле status.json должны содержать одинаковую дату, равную дате предшествующих суток
+
+По завершении обновления выполняется рассылка со статусом обновления на электронную почту сотрудникам, ответственным за данный процесс.
+
+<img width="616" height="420" alt="image" src="https://github.com/user-attachments/assets/1fb3833b-9bd4-4ac5-8681-5e5a0733c59b" />
+<img width="616" height="445" alt="image" src="https://github.com/user-attachments/assets/d07d20d0-67aa-461d-a347-4fd61a327176" />
+
+Список рассылки может быть скорректирован в файлe appsettings.json в поле EmailRecipients.
