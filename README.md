@@ -26,6 +26,7 @@
 По завершении обновления выполняется рассылка со статусом обновления на электронную почту сотрудникам, ответственным за данный процесс.
 
 <img width="616" height="420" alt="image" src="https://github.com/user-attachments/assets/1fb3833b-9bd4-4ac5-8681-5e5a0733c59b" />
+
 <img width="616" height="445" alt="image" src="https://github.com/user-attachments/assets/d07d20d0-67aa-461d-a347-4fd61a327176" />
 
 Список рассылки может быть скорректирован в файлe appsettings.json в поле EmailRecipients.
